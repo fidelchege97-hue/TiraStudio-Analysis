@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Employee Check-In Rewards</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <h1>Employee Check-In Rewards</h1>
+        <p class="muted">Daily check-ins, credits and performance insights.</p>
+      </div>
+      <button id="logoutBtn" class="secondary hidden">Log out</button>
+    </header>
+
+    <main class="container">
+      <section id="authView" class="auth-grid">
+        <div class="card">
+          <h2>Sign in</h2>
+          <form id="loginForm">
+            <label>Email<input id="loginEmail" type="email" required autocomplete="email"></label>
+            <label>Password<input id="loginPassword" type="password" required autocomplete="current-password"></label>
+            <button type="submit">Sign in</button>
+          </form>
+          <p id="loginMessage" class="message"></p>
+        </div>
+        <div class="card">
+          <h2>Create employee account</h2>
+          <form id="signupForm">
+            <label>Full name<input id="signupName" required autocomplete="name"></label>
+            <label>Email<input id="signupEmail" type="email" required autocomplete="email"></label>
+            <label>Password<input id="signupPassword" type="password" minlength="8" required autocomplete="new-password"></label>
+            <button type="submit">Create account</button>
+          </form>
+          <p id="signupMessage" class="message"></p>
+        </div>
+      </section>
+
+      <section id="loadingView" class="card hidden"><p>Loading…</p></section>
+
+      <section id="employeeView" class="hidden">
+        <div class="welcome-row">
+          <div>
+            <h2>Employee dashboard</h2>
+            <p id="employeeName" class="muted"></p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat card"><span>Total credits</span><strong id="creditsValue">0</strong></div>
+          <div class="stat card"><span>Current streak</span><strong id="streakValue">0 days</strong></div>
+          <div class="stat card"><span>This month</span><strong id="monthCheckins">0</strong></div>
+        </div>
+
+        <div class="card checkin-card">
+          <h3>Today's check-in</h3>
+          <p id="checkinStatus" class="muted">Checking status…</p>
+          <button id="checkinBtn">Check in today</button>
+          <p id="checkinMessage" class="message"></p>
+        </div>
+
+        <div class="card">
+          <h3>Recent check-ins</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Date</th><th>Time</th><th>Credits</th></tr></thead>
+              <tbody id="employeeHistory"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="adminView" class="hidden">
+        <div class="welcome-row">
+          <div>
+            <h2>Admin analytics</h2>
+            <p id="adminName" class="muted"></p>
+          </div>
+          <button id="refreshAdminBtn" class="secondary">Refresh</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat card"><span>Employees</span><strong id="adminEmployees">0</strong></div>
+          <div class="stat card"><span>Today's check-ins</span><strong id="adminToday">0</strong></div>
+          <div class="stat card"><span>Total credits</span><strong id="adminCredits">0</strong></div>
+          <div class="stat card"><span>Today's participation</span><strong id="adminRate">0%</strong></div>
+        </div>
+
+        <div class="card">
+          <h3>Employee performance</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Employee</th><th>Email</th><th>Credits</th><th>Check-ins</th><th>Last check-in</th></tr></thead>
+              <tbody id="adminEmployeesTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Recent check-ins</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Employee</th><th>Date</th><th>Time</th><th>Credits</th></tr></thead>
+              <tbody id="adminHistory"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>Employee Check-In Rewards · Supabase backend · GitHub Pages frontend</footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
